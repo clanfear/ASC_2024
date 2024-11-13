@@ -14,16 +14,14 @@ history: false
 
 
 
-## [Mid-life health and childhood exposure to dangerous contexts]{.r-fit-text} {background-image="img/stephan-cassara-KnAIsBuitGg-unsplash.jpg" background-opacity="0.3"}
+## Mid-life health consequences of exposure to gun violence {background-image="img/stephan-cassara-KnAIsBuitGg-unsplash.jpg" background-opacity="0.3"}
 
 &nbsp;
 
 |                    |                           |
 |-------------------:|:--------------------------|
 | Charles C. Lanfear | *University of Cambridge* |
-| David S. Kirk      | *University of Oxford*    |
 | Robert J. Sampson  | *Harvard University*      |
-
 
 
 ```{r setup}
@@ -38,8 +36,9 @@ knitr::opts_chunk$set(dev = "ragg_png",
                       fig.align = "center")
 library(tidyverse)
 library(showtext)
-plot_font <- "Open Sans"
-font_add_google(name = plot_font)
+# plot_font <- "Open Sans"
+plot_font <- "sans"
+# font_add_google(name = plot_font)
 showtext_auto()
 gg_color_hue <- function(n) {
   hues = seq(15, 375, length = n + 1)
@@ -48,160 +47,310 @@ gg_color_hue <- function(n) {
 ```
 
 
-## [Exposure]{background-image="img/stephan-cassara-KnAIsBuitGg-unsplash.jpg" background-opacity="0.1"}
+## {background-image="img/stephan-cassara-KnAIsBuitGg-unsplash.jpg" background-opacity="0.3"}
 
-Exposure to gun violence is pervasive
+![](img/jno.png)
 
-## [Danger and gun carrying]{background-image="img/stephan-cassara-KnAIsBuitGg-unsplash.jpg" background-opacity="0.1"}
+&nbsp;
 
-Show SA paper
+Exposure to gun violence, pervasive but varies widely by...
 
-Exposure to dangerous context--including gun violence--predicts early-age carrying
+* Birth cohort
+* Race
+* Sex
+* Life stage
 
-... but most people age out... what are lasting consequences?
+## {background-image="img/stephan-cassara-KnAIsBuitGg-unsplash.jpg" background-opacity="0.15"}
 
-## [Handgun violence over the life course]{.r-fit-text}{background-image="img/stephan-cassara-KnAIsBuitGg-unsplash.jpg" background-opacity="0.1"}
+![](img/exposure-curves-weighted.png)
 
-Most concealed handgun research focuses on adolescents
+* Exposure high for 90s adolescents, 2016-2021 adults
+* Black and Hispanic males at highest risk
+
+## {background-image="img/stephan-cassara-KnAIsBuitGg-unsplash.jpg" background-opacity="0.3"}
+
+
+![](img/sa.png)
+Gun carrying follows two age-specific patterns:
+
+* Adolescent carrying age-limited, responsive to exposure
+* Adult carrying persistent, responsive to macro-context
+
+## {background-image="img/stephan-cassara-KnAIsBuitGg-unsplash.jpg" background-opacity="0.15"}
+
+![](img/fig-6_exposure-carry-predicted-probs.png){width=300}
+
+* Exposure predicts adolescent but not adult gun carrying
+* Young carriers likely in uniquely dangerous contexts
+
+## The present study
+
+&nbsp;
+
+Race, sex, and cohort differentiated exposure to gun violence may produce lasting **harm to physical and mental heath**
 
 . . .
 
-But handgun offending occurs throughout the life course
+&nbsp;
 
+But those most vulnerable may **move away** from dangerous places...
 
 . . .
 
-We know little about **glater life consequences**
+&nbsp;
 
+... or even **die** as a result of that danger
+
+
+## {background-image="img/stephan-cassara-KnAIsBuitGg-unsplash.jpg" background-opacity="0.15"}
+
+
+
+```{dot}
+//| fig-width: 12
+digraph G{
+  graph [layout=neato, bgcolor="transparent"]
+  node [shape = plaintext, fontname="Open Sans", fontcolor="white"]
+  edge [color="white"]
+  
+  dc1 [pos = "0,  4.5!", label = "Exposure to\nGun Violence"]
+//  exp1 [pos = "0,  1.5!", label = "Direct\nExposure"]
+  out1 [pos = "1,  2!", label = "Health"]
+  mob [pos = "3.5,  2!", label = "Residential\nMobility"]
+  dc2 [pos = "5,  4.5!", label = "Exposure to\nGun Violence"]
+  mort [pos = "3.5,  3.75!", label = "Mortality"]
+//  exp2 [pos = "5,  1.5!", label = "Direct\nExposure"]
+  health2 [pos = "6,  2!", label = "Health"]
+  
+earlylife [pos = "0.5,  5.5!", label = "Childhood and\nAdolescence", fontcolor = yellow]
+midlife [pos = "4.5,  5.5!", label = "Early and Mid\nAdulthood", fontcolor = yellow]
+//  bsibsa [pos = "2.5,  2.25!", label = "Life course", fontcolor = yellow]
+//  bsc1bsi [pos = "5.25,  3.5!", label = "Cohort\ndynamics", fontcolor = yellow]
+  
+  dc1 -> dc2
+//  dc1 -> exp1
+  dc1 -> out1
+  dc1 -> mort
+  out1 -> mort
+//  exp1 -> out1
+//  exp1 -> health2
+//  exp1 -> mort
+  mob -> mort
+  out1 -> mob
+  dc1 -> mob
+//  exp1 -> mob
+  mob -> dc2
+//  dc2 -> exp2
+  dc2 -> health2
+//  exp2 -> health2
+  mob -> health2
+}
+```
+
+&nbsp;
+
+* Different forms of exposure
+* Mobility: A confounding mediator
+* Mortality: A censoring collider
 
 ## Questions {background-image="img/clay-banks-nsAn3nSW5T0-unsplash.jpg" background-opacity="0.3"}
 
+How does exposure to gun violence affect **mid-life**...
+
 * **Physical health**
 * **Mental health**
-
-
-
 * Substance use
+
+. . .
+
+&nbsp;
+
+And to understand this, we need to know how it affects...
+
 * Mortality
 * Residential mobility
 
-## {.nostretch background-image="img/clay-banks-nsAn3nSW5T0-unsplash.jpg" background-opacity="0.1"}
+   
+## {.nostretch background-image="img/clay-banks-nsAn3nSW5T0-unsplash.jpg" background-opacity="0.3"}
 
 ![](img/phdcn_logo_white.svg){width=700px align=center}
 
-* Cohorts born 1981, 1984, 1987, and 1996
-   * Average ages 25 to 40 in 2021
-
-* Key measures:
-   * **Mental Health**: Kessler K6 distress scale
-   * Physical Health: 
-      * **5 category self-reported**
+:::: {.columns}
+::: {.column}
+* Health:
+   * Mental: 
+      * **Kessler K6 distress scale**
+      * Anxiety, depression, PTSD
+   * Physical:
+      * **5 category self-reported physical health**
       * Diagnosed serious health conditions
-  
-   * **Exposure**: Age first saw someone else shot
+:::
+::: {.column}
+* Exposure to gun violence:
+   * Age first **saw someone shot**
+   * **Adolescent gun carrying**
+   * **Recent nearby shootings**
+   * Tract homicide rate
+:::
+::::
 
-* Survey and attrition weights
+## Analysis {background-image="img/clay-banks-nsAn3nSW5T0-unsplash.jpg" background-opacity="0.3"}
 
-# Physical Health {background-image="img/pedro-lastra-5Bv3EcijAl4-unsplash.jpg" background-opacity="0.3"}
+* Today: Exploratory analysis
+   * Linear and ordinal models
+   * Covariate control
+      * Family background
+      * Childhood neighborhood
+
+. . .
+
+* Later: 
+   * Improved measurement
+   * More complete model
+   * Plausibly identified effects
+      * e.g., Structural nested models
+
+# Results {.r-fit-text background-image="img/ozzie-stern-dkwJLowVvl4-unsplash.jpg" background-opacity="0.3"}
 
 
-# Continuity {background-image="img/benjamin-suter-mpLex62zVKQ-unsplash.jpg" background-opacity="0.3"}
+##  Mental health in mid-life {background-image="img/ozzie-stern-dkwJLowVvl4-unsplash.jpg" background-opacity="0.15"}
 
-
-
-# Mental distress {background-image="img/ozzie-stern-dkwJLowVvl4-unsplash.jpg" background-opacity="0.2"}
-
-```{r, eval=FALSE}
-
-legend_labs <- c("Early carry" = "Gun carry before age 21")
-mh_pooled_data |>
-  pivot_longer(c(early_carry, seen_shot)) |>
-  mutate(name = str_to_sentence(str_replace(name, "_", " "))) |>
-  ggplot(aes(x = mhealthsum_5, fill = value, group = value, color = value)) + 
-  scale_fill_manual(values = c("yes" = "#F8766D", "no" = "#00BFC4")) +
-  scale_color_manual(values = c("yes" = "#F8766D", "no" = "#00BFC4")) +
-  facet_wrap(~name, labeller = labeller(fill =, color = )) +
-  labs(color = NULL, fill = NULL) +
-  geom_density(alpha = 0.5, bounds = c(0, 24)) +
-  annotate("segment", x = 13, xend= 13, y = 0, yend = 0.15, color = "red") +
-  annotate("segment", x = 5, xend= 5, y = 0, yend = 0.15, color = "yellow") +
-  annotate("text", x = 13, y = 0.16, color = "red", label = "Severe") +
-  annotate("text", x = 5, y = 0.16, color = "yellow", label = "Moderate") +
-  geom_text(data = mh_pr_df, aes(x = x, y = y, label = pr, color = value), show.legend=FALSE) +
-  theme_void() +
-  theme(legend.position = "inside",
-        legend.position.inside = c(0.45, 0.85),
-        strip.text = element_text(family = plot_font,  color = "white", size = rel(1.5)),
-        panel.background = element_rect(fill = "transparent",colour = NA),
-        plot.background = element_rect(fill = "transparent",colour = NA),
-        text = element_text(family = plot_font,  color = "white"))
-  
-```
 
 ```{r}
 load("data/import/plot_data.RData")
 mh_preds |>
-  mutate(color = as.numeric(estimate == max(estimate)), .by = variable) |>
+  mutate(color = fct_rev(factor(estimate == max(estimate))), .by = variable) |>
   ggplot(aes(x = term, y = estimate, fill = color)) +
   geom_col(show.legend = FALSE) +
   facet_wrap(~variable, scales = "free_x") +
-  labs(y = NULL) +
-  theme_minimal() +
+  labs(y = "Distress score", x = NULL) +
+  theme_minimal(base_size = 16) +
   theme(
-    panel.spacing.y = unit(12, "pt"),
+    panel.spacing.y = unit(16, "pt"),
     axis.text = element_text(color = "white"),
         panel.grid = element_blank(),
-        strip.text = element_text(family = plot_font,  color = "white", size = rel(1.5)),
+        strip.text = element_text(family = plot_font,  color = "white", size = rel(1)),
         panel.background = element_rect(fill = "transparent",colour = NA),
         plot.background = element_rect(fill = "transparent",colour = NA),
         text = element_text(family = plot_font,  color = "white"))
 ```
 
-## [Probability of carry onset by age period]{.r-fit-text}{background-image="img/ozzie-stern-dkwJLowVvl4-unsplash.jpg" background-opacity="0.1"}
+## Mental health during adolescence {.r-fit-text background-image="img/ozzie-stern-dkwJLowVvl4-unsplash.jpg" background-opacity="0.15"}
 
 ```{r}
 mh_preds_4 |>
-  mutate(color = as.numeric(estimate == max(estimate)), .by = variable) |>
+  mutate(color = fct_rev(factor(estimate == max(estimate))), .by = variable) |>
   ggplot(aes(x = term, y = estimate, fill = color)) +
   geom_col(show.legend = FALSE) +
   facet_wrap(~variable, scales = "free_x") +
-  labs(y = NULL) +
-  theme_minimal() +
+    scale_y_continuous(limits = c(0,10), breaks = seq(0,10, by = 2)) +
+  labs(y = "Distress score", x = NULL) +
+  theme_minimal(base_size = 20) +
   theme(axis.text = element_text(color = "white"),
+        panel.spacing.y = unit(16, "pt"),
         panel.grid = element_blank(),
-        strip.text = element_text(family = plot_font,  color = "white", size = rel(1.5)),
+        strip.text = element_text(family = plot_font,  color = "white", size = rel(1)),
         panel.background = element_rect(fill = "transparent",colour = NA),
         plot.background = element_rect(fill = "transparent",colour = NA),
         text = element_text(family = plot_font,  color = "white"))
 ```
+Note: 1996 cohort only
 
-# Physical health
+## Physical health in mid-life {background-image="img/benjamin-suter-mpLex62zVKQ-unsplash.jpg" background-opacity="0.15"}
 
 ```{r}
+col_sex <- khroma::color("bright")(2)
+col_race <- khroma::color("highcontrast")(3)
+col_cohort <- khroma::color("vibrant")(4)
+col_bin <- rev(gg_color_hue(2))
+
+ph_cols <- c(setNames(col_sex, c("Female", "Male")),
+             setNames(col_bin, c("No", "Yes")),
+             setNames(col_race, c("Black", "Hispanic", "White")),
+             setNames(col_cohort, c("1981","1984","1987","1996")))
+
+legend_df <- tibble(
+  variable = factor(c("Sex", "Sex", "Saw someone shot", "Saw someone shot", "Adolescent gun carry", "Adolescent gun carry", "Recent nearby shooting", "Recent nearby shooting", "Race", "Race", "Race", "Cohort", "Cohort", "Cohort", "Cohort"), levels = levels(ph_preds$variable)),
+  term = c(c("Female", "Male"), c("No", "Yes"), c("No", "Yes"), c("No", "Yes"), c("Black", "Hispanic", "White"), c("1981","1984","1987","1996"))) |>
+  mutate(x = "Poor",
+         y = 0.4 - 0.05*row_number(), .by = variable)
 ph_preds |>
   # mutate(color = as.numeric(estimate == max(estimate)), .by = variable) |>
   ggplot(aes(x = outcome, y = estimate, group = term, fill = term)) +
   geom_col(show.legend = FALSE, position = "dodge") +
+  scale_fill_manual(values = ph_cols) +
+  geom_text(data = legend_df, aes(x = x, y = y, label = term, color = term), show.legend = FALSE) +
+  scale_color_manual(values = ph_cols) +
   facet_wrap(~variable, scales = "free_x") +
-  labs(y = NULL) +
-  theme_minimal() +
-  theme(
-    panel.spacing.y = unit(12, "pt"),
-    axis.text = element_text(color = "white"),
+  labs(y = "Probability", x = NULL) +
+  theme_minimal(base_size = 12) +
+  theme(panel.spacing.y = unit(16, "pt"),
+        axis.text = element_text(color = "white"),
         panel.grid = element_blank(),
-        strip.text = element_text(family = plot_font,  color = "white", size = rel(1.5)),
+        strip.text = element_text(family = plot_font,  color = "white", size = rel(1.2)),
         panel.background = element_rect(fill = "transparent",colour = NA),
         plot.background = element_rect(fill = "transparent",colour = NA),
         text = element_text(family = plot_font,  color = "white"))
 ```
 
-## Takeaway{background-image="img/joel-mott-s-rsM-AktbA-unsplash.jpg" background-opacity="0.1"}
+## Physical health in adolescence {background-image="img/benjamin-suter-mpLex62zVKQ-unsplash.jpg" background-opacity="0.15"}
+
+```{r}
+col_sex <- khroma::color("bright")(2)
+col_race <- khroma::color("highcontrast")(3)
+col_bin <- rev(gg_color_hue(2))
+
+ph_cols <- c(setNames(col_sex, c("Female", "Male")),
+             setNames(col_bin, c("No", "Yes")),
+             setNames(col_race, c("Black", "Hispanic", "White")))
+
+legend_df <- tibble(
+  variable = factor(c("Sex", "Sex", "Saw someone shot", "Saw someone shot", "Adolescent gun carry", "Adolescent gun carry", "Race", "Race", "Race"), levels = levels(ph_preds$variable)),
+  term = c(c("Female", "Male"), c("No", "Yes"), c("No", "Yes"), c("Black", "Hispanic", "White"))) |>
+  mutate(x = "Fair",
+         y = 0.6 - 0.1*row_number(), .by = variable)
+ph_preds_4 |>
+  ggplot(aes(x = outcome, y = estimate, group = term, fill = term)) +
+  geom_col(show.legend = FALSE, position = "dodge") +
+  scale_fill_manual(values = ph_cols) +
+  geom_text(data = legend_df, aes(x = x, y = y, label = term, color = term), show.legend = FALSE) +
+  scale_color_manual(values = ph_cols) +
+  facet_wrap(~variable, scales = "free_x") +
+  labs(y = "Probability", x = NULL) +
+  theme_minimal(base_size = 16) +
+  theme(panel.spacing.y = unit(16, "pt"),
+        axis.text = element_text(color = "white"),
+        panel.grid = element_blank(),
+        strip.text = element_text(family = plot_font,  color = "white", size = rel(1)),
+        panel.background = element_rect(fill = "transparent",colour = NA),
+        plot.background = element_rect(fill = "transparent",colour = NA),
+        text = element_text(family = plot_font,  color = "white"))
+```
+Note: 1996 cohort only
+
+## Mortality sneak-peek {background-image="img/pedro-lastra-5Bv3EcijAl4-unsplash.jpg" background-opacity="0.15"}
 
 
-## New Questions {background-image="img/joel-mott-s-rsM-AktbA-unsplash.jpg" background-opacity="0.1"}
+# Takeaways {background-image="img/joel-mott-s-rsM-AktbA-unsplash.jpg" background-opacity="0.3"}
 
+## Key results {background-image="img/joel-mott-s-rsM-AktbA-unsplash.jpg" background-opacity="0.3"}
 
-## Feedback and Questions {.smaller background-image="img/joel-mott-s-rsM-AktbA-unsplash.jpg" background-opacity="0.1"}
+* Modest but significant associations over time
+* Not accounting for mortality censoring or mobility
+   * These may suppress (or amplify) associations
+
+## Next steps {background-image="img/joel-mott-s-rsM-AktbA-unsplash.jpg" background-opacity="0.3"}
+
+* Can we get leverage on a causal identification?
+   * Power / variation
+   * Sequential ignorability
+
+* Expanding the model
+   * Mortality
+   * Mobility
+   * Serious physical health conditions
+
+## Feedback and Questions {.smaller background-image="img/joel-mott-s-rsM-AktbA-unsplash.jpg" background-opacity="0.3"}
 
 Contact:
 
