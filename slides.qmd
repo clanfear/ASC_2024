@@ -109,7 +109,7 @@ But those most vulnerable may **move away** from dangerous places...
 ```{dot}
 //| fig-width: 12
 digraph G{
-  graph [layout=neato, bgcolor="transparent"]
+  graph [layout=neato, bgcolor="transparent", splines=true]
   node [shape = plaintext, fontname="Open Sans", fontcolor="white"]
   edge [color="white"]
   
@@ -129,6 +129,7 @@ midlife [pos = "4.5,  5.5!", label = "Early and Mid\nAdulthood", fontcolor = yel
   
   dc1 -> dc2
 //  dc1 -> exp1
+  dc1 -> health2
   dc1 -> out1
   dc1 -> mort
   out1 -> mort
@@ -144,6 +145,7 @@ midlife [pos = "4.5,  5.5!", label = "Early and Mid\nAdulthood", fontcolor = yel
   dc2 -> health2
 //  exp2 -> health2
   mob -> health2
+  out1 -> health2 [style="solid"]
 }
 ```
 
