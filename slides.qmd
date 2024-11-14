@@ -171,7 +171,7 @@ And to understand this, we need to know how it affects...
 * Residential mobility
 
    
-## {.nostretch background-image="img/clay-banks-nsAn3nSW5T0-unsplash.jpg" background-opacity="0.3"}
+## {.nostretch background-image="img/pedro-lastra-5Bv3EcijAl4-unsplash.jpg" background-opacity="0.2"}
 
 ![](img/phdcn_logo_white.svg){width=700px align=center}
 
@@ -184,6 +184,7 @@ And to understand this, we need to know how it affects...
    * Physical:
       * **5 category self-reported physical health**
       * Diagnosed serious health conditions
+   * Substance use
 :::
 ::: {.column}
 * Exposure to gun violence:
@@ -194,7 +195,7 @@ And to understand this, we need to know how it affects...
 :::
 ::::
 
-## Analysis {background-image="img/clay-banks-nsAn3nSW5T0-unsplash.jpg" background-opacity="0.3"}
+## Analysis {background-image="img/pedro-lastra-5Bv3EcijAl4-unsplash.jpg" background-opacity="0.2"}
 
 * Today's exploratory analysis:
    * Linear and ordinal models
@@ -204,7 +205,7 @@ And to understand this, we need to know how it affects...
 
 . . .
 
-* Later: 
+* Future plans: 
    * Improved measurement
    * More complete model
    * Plausibly identified effects
@@ -223,7 +224,7 @@ mh_preds |>
   ggplot(aes(x = term, y = estimate, fill = color)) +
   geom_col(show.legend = FALSE) +
   facet_wrap(~variable, scales = "free_x") +
-  labs(y = "Distress score", x = NULL) +
+  labs(y = "Worse mental health →", x = NULL) +
   theme_minimal(base_size = 16) +
   theme(
     panel.spacing.y = unit(16, "pt"),
@@ -244,7 +245,7 @@ mh_preds_4 |>
   geom_col(show.legend = FALSE) +
   facet_wrap(~variable, scales = "free_x") +
     scale_y_continuous(limits = c(0,10), breaks = seq(0,10, by = 2)) +
-  labs(y = "Distress score", x = NULL) +
+  labs(y = "Worse mental health →", x = NULL) +
   theme_minimal(base_size = 20) +
   theme(axis.text = element_text(color = "white"),
         panel.spacing.y = unit(16, "pt"),
@@ -275,6 +276,7 @@ legend_df <- tibble(
   mutate(x = "Poor",
          y = 0.4 - 0.05*row_number(), .by = variable)
 ph_preds |>
+  mutate(outcome = fct_recode(outcome, `Very\ngood`="Very good")) |>
   # mutate(color = as.numeric(estimate == max(estimate)), .by = variable) |>
   ggplot(aes(x = outcome, y = estimate, group = term, fill = term, color = term)) +
   geom_area(show.legend = FALSE, position = "dodge", alpha = 0.3) +
@@ -282,10 +284,12 @@ ph_preds |>
   geom_text(data = legend_df, aes(x = x, y = y, label = term, color = term), show.legend = FALSE) +
   scale_color_manual(values = ph_cols) +
   facet_wrap(~variable, scales = "free_x") +
-  labs(y = "Probability", x = NULL) +
+  labs(y = "Probability", x = "Worse physical health →") +
   theme_minimal(base_size = 12) +
   theme(panel.spacing.y = unit(16, "pt"),
         axis.text = element_text(color = "white"),
+        axis.text.x = element_text(vjust = 0.5),
+        axis.title.x = element_text(margin = margin(12,0,0,0, "pt")),
         panel.grid = element_blank(),
         strip.text = element_text(family = plot_font,  color = "white", size = rel(1.2)),
         panel.background = element_rect(fill = "transparent",colour = NA),
@@ -317,7 +321,7 @@ ph_preds_4 |>
   geom_text(data = legend_df, aes(x = x, y = y, label = term, color = term), show.legend = FALSE) +
   scale_color_manual(values = ph_cols) +
   facet_wrap(~variable, scales = "free_x") +
-  labs(y = "Probability", x = NULL) +
+  labs(y = "Probability", x = "Worse physical health →") +
   theme_minimal(base_size = 16) +
   theme(panel.spacing.y = unit(16, "pt"),
         axis.text = element_text(color = "white"),
@@ -350,11 +354,12 @@ ph_preds_4 |>
   geom_text(data = legend_df, aes(x = x, y = y, label = term, color = term), show.legend = FALSE) +
   scale_color_manual(values = ph_cols) +
   facet_wrap(~variable, scales = "free_x") +
-  labs(y = "Probability", x = NULL) +
+  labs(y = "Probability", x = "Worse physical health →") +
   theme_minimal(base_size = 16) +
   theme(panel.spacing.y = unit(16, "pt"),
         axis.text = element_text(color = "white"),
         panel.grid = element_blank(),
+        axis.title.x = element_text(margin = margin(12,0,0,0, "pt")),
         strip.text = element_text(family = plot_font,  color = "white", size = rel(1)),
         panel.background = element_rect(fill = "transparent",colour = NA),
         plot.background = element_rect(fill = "transparent",colour = NA),
@@ -363,7 +368,7 @@ ph_preds_4 |>
 
 Note: 1996 cohort only
 
-## Mortality sneak-peek {background-image="img/pedro-lastra-5Bv3EcijAl4-unsplash.jpg" background-opacity="0.15"}
+## Mortality sneak-peek {background-image="img/benjamin-suter-mpLex62zVKQ-unsplash.jpg" background-opacity="0.15"}
 
 ![](img/hazard_mortality.png)
 
@@ -373,19 +378,25 @@ Note: 1996 cohort only
 
 * Modest but significant associations over time
 * Strong contemporaneous associations
-* Not accounting for mortality censoring or mobility
+* Not accounting for mortality or mobility
    * These may suppress (or amplify) associations
 
 ## Next steps {background-image="img/joel-mott-s-rsM-AktbA-unsplash.jpg" background-opacity="0.3"}
-
-* Can we get leverage on a causal identification?
-   * Power / variation
-   * Sequential ignorability
 
 * Expanding the model
    * Mortality
    * Mobility
    * Serious physical health conditions
+
+&nbsp;
+
+* Can we get leverage on causal identification?
+   * Power / variation
+   * Sequential ignorability
+
+
+
+
 
 ## Feedback and Questions {.smaller background-image="img/joel-mott-s-rsM-AktbA-unsplash.jpg" background-opacity="0.3"}
 
