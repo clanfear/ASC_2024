@@ -36,9 +36,8 @@ knitr::opts_chunk$set(dev = "ragg_png",
                       fig.align = "center")
 library(tidyverse)
 library(showtext)
-# plot_font <- "Open Sans"
-plot_font <- "sans"
-# font_add_google(name = plot_font)
+plot_font <- "Open Sans"
+font_add_google(name = plot_font)
 showtext_auto()
 gg_color_hue <- function(n) {
   hues = seq(15, 375, length = n + 1)
@@ -181,10 +180,11 @@ And to understand this, we need to know how it affects...
 ::: {.column}
 * Health:
    * Mental: 
-      * **Kessler K6 distress scale**
+      * **Kessler K6 distress scale (0-24)**
+         * 13+ indicative of serious mental illness
       * Anxiety, depression, PTSD
    * Physical:
-      * **5 category self-reported physical health**
+      * **Self-reported physical health (1-5)**
       * Diagnosed serious health conditions
    * Substance use
 :::
@@ -192,7 +192,7 @@ And to understand this, we need to know how it affects...
 * Exposure to gun violence:
    * Age first **saw someone shot**
    * **Adolescent gun carrying**
-   * **Recent nearby shootings**
+   * **Past-year shootings within 250m**
    * Tract homicide rate
 :::
 ::::
@@ -210,6 +210,8 @@ And to understand this, we need to know how it affects...
 * Future plans: 
    * Improved measurement
    * More complete model
+      * Mortality
+      * Mobility
    * Plausibly identified effects
       * e.g., structural nested models
 
@@ -226,7 +228,7 @@ mh_preds |>
   ggplot(aes(x = term, y = estimate, fill = color)) +
   geom_col(show.legend = FALSE) +
   facet_wrap(~variable, scales = "free_x") +
-  labs(y = "Worse mental health →", x = NULL) +
+  labs(y = "Distress score (higher is worse)", x = NULL) +
   theme_minimal(base_size = 16) +
   theme(
     panel.spacing.y = unit(16, "pt"),
@@ -247,7 +249,7 @@ mh_preds_4 |>
   geom_col(show.legend = FALSE) +
   facet_wrap(~variable, scales = "free_x") +
     scale_y_continuous(limits = c(0,10), breaks = seq(0,10, by = 2)) +
-  labs(y = "Worse mental health →", x = NULL) +
+  labs(y = "Distress score (higher is worse)", x = NULL) +
   theme_minimal(base_size = 20) +
   theme(axis.text = element_text(color = "white"),
         panel.spacing.y = unit(16, "pt"),
@@ -286,7 +288,7 @@ ph_preds |>
   geom_text(data = legend_df, aes(x = x, y = y, label = term, color = term), show.legend = FALSE) +
   scale_color_manual(values = ph_cols) +
   facet_wrap(~variable, scales = "free_x") +
-  labs(y = "Probability", x = "Worse physical health →") +
+  labs(y = "Probability", x = "Physical health") +
   theme_minimal(base_size = 12) +
   theme(panel.spacing.y = unit(16, "pt"),
         axis.text = element_text(color = "white"),
@@ -323,7 +325,7 @@ ph_preds_4 |>
   geom_text(data = legend_df, aes(x = x, y = y, label = term, color = term), show.legend = FALSE) +
   scale_color_manual(values = ph_cols) +
   facet_wrap(~variable, scales = "free_x") +
-  labs(y = "Probability", x = "Worse physical health →") +
+  labs(y = "Probability", x = "Physical health") +
   theme_minimal(base_size = 16) +
   theme(panel.spacing.y = unit(16, "pt"),
         axis.text = element_text(color = "white"),
@@ -356,7 +358,7 @@ ph_preds_4 |>
   geom_text(data = legend_df, aes(x = x, y = y, label = term, color = term), show.legend = FALSE) +
   scale_color_manual(values = ph_cols) +
   facet_wrap(~variable, scales = "free_x") +
-  labs(y = "Probability", x = "Worse physical health →") +
+  labs(y = "Probability", x = "Physical health") +
   theme_minimal(base_size = 16) +
   theme(panel.spacing.y = unit(16, "pt"),
         axis.text = element_text(color = "white"),
@@ -379,7 +381,9 @@ Note: 1996 cohort only
 ## Key results {background-image="img/joel-mott-s-rsM-AktbA-unsplash.jpg" background-opacity="0.3"}
 
 * Modest but significant associations over time
+   * Primarily mental health
 * Strong contemporaneous associations
+   * Young gun carriers reported poor mental, excellent physical health
 * Not accounting for mortality or mobility
    * These may suppress (or amplify) associations
 
@@ -395,9 +399,6 @@ Note: 1996 cohort only
 * Can we get leverage on causal identification?
    * Power / variation
    * Sequential ignorability
-
-
-
 
 
 ## Feedback and Questions {.smaller background-image="img/joel-mott-s-rsM-AktbA-unsplash.jpg" background-opacity="0.3"}
@@ -416,3 +417,29 @@ For more about the PHDCN+:
 | PHDCN\@fas.harvard.edu
 | <https://sites.harvard.edu/phdcn/>
 | [https://doi.org/10.1007/s40865-022-00203-0](https://sites.harvard.edu/phdcn/)
+
+# Appendix {.smaller background-image="img/joel-mott-s-rsM-AktbA-unsplash.jpg" background-opacity="0.3"}
+
+## Kessler K6 {.smaller background-image="img/joel-mott-s-rsM-AktbA-unsplash.jpg" background-opacity="0.15"}
+
+"During the past 30 days, about how often did you feel..."
+
+:::: {.columns}
+::: {.column}
+* ... nervous?
+* ... hopeless?
+* ... restless or fidgety?
+* ... so depressed that nothing could cheer you up?
+* ... that everything was an effort?
+* ... worthless?
+:::
+::: {.column}
+Levels: 
+
+* (4) All of the time
+* (3) Most of the time
+* (2) Some of the time
+* (1) A little of the time
+* (0) None of the time
+:::
+::::
